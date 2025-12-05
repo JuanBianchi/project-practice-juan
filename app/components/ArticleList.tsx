@@ -1,8 +1,10 @@
 import React from 'react';
 import Article from './Article';
-import { articles } from '../data/articles';
+import { getArticles } from '../data/articles';
 
-const ArticleList: React.FC = () => {
+const ArticleList = async () => {
+    const articles = await getArticles();
+
     return (
         <section className="flex flex-col gap-8 w-full">
             <div className="flex flex-col gap-2">

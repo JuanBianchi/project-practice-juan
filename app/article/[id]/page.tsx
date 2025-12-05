@@ -1,4 +1,3 @@
-import React from 'react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getArticleById } from '../../data/articles';
@@ -12,7 +11,7 @@ interface PageProps {
 export default async function ArticlePage({ params }: PageProps) {
     const { id } = await params;
     const articleId = parseInt(id, 10);
-    const article = getArticleById(articleId);
+    const article = await getArticleById(articleId);
 
     if (!article) {
         notFound();
@@ -21,10 +20,7 @@ export default async function ArticlePage({ params }: PageProps) {
     return (
         <div className="flex min-h-screen bg-zinc-50 font-sans dark:bg-black">
             <main className="flex min-h-screen w-full max-w-3xl flex-col items-start justify-start py-12 px-6 bg-white dark:bg-black mx-auto sm:px-12">
-                <Link
-                    href="/"
-                    className="mb-8 text-sm font-medium text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50"
-                >
+                <Link href="/" className="mb-8 text-sm font-medium text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50">
                     ← Volver
                 </Link>
                 <article className="flex flex-col gap-6">
@@ -38,10 +34,7 @@ export default async function ArticlePage({ params }: PageProps) {
                             {article.title}
                         </h1>
                     </header>
-                    <div
-                        className="prose prose-zinc dark:prose-invert max-w-none"
-                        dangerouslySetInnerHTML={{ __html: article.content }}
-                    />
+                    <div className="prose prose-zinc dark:prose-invert max-w-none" dangerouslySetInnerHTML={{ __html: article.content }} />
                 </article>
             </main>
         </div>
