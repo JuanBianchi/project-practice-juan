@@ -20,13 +20,18 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  login
 }: Readonly<{
   children: React.ReactNode;
+  login: React.ReactNode;
 }>) {
   return (
     <html lang="en">
-      <body className="min-h-screen flex flex-col bg-zinc-50 dark:bg-black">
-        {children}
+      <body className="min-h-screen bg-zinc-50 dark:bg-black">
+        <div className="relative min-h-screen flex flex-col">
+          {children}
+          {login}
+        </div>
       </body>
     </html>
   );

@@ -2,8 +2,9 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { JSX } from 'react';
 
-const ArticleForm: React.FC = () => {
+const ArticleForm = (): JSX.Element => {
     const router = useRouter();
     const [formData, setFormData] = useState({
         title: '',

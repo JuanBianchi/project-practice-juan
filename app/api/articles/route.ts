@@ -29,6 +29,7 @@ async function writeArticles(articles: ArticleData[]): Promise<void> {
 
 export async function GET() {
     const articles = await readArticles();
+    console.log({ articles });
     return NextResponse.json(articles);
 }
 

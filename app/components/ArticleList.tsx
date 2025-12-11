@@ -1,9 +1,19 @@
-import React from 'react';
-import Article from './Article';
-import { getArticles } from '../data/articles';
+"use client";
 
-const ArticleList = async () => {
-    const articles = await getArticles();
+import React, { useEffect } from "react";
+import Article from "./Article";
+import useArticles from "../hooks/useArticles";
+import { useActionState } from "react";
+
+
+const ArticleList = () => {
+    //const articles = await useArticles();
+    //const [articles, setArticles, isPending] = useActionState(useArticles, null);
+    const [state, formAction] = useActionState(useArticles, []);
+
+    useEffect(() => {
+        formAction();
+    }, []);
 
     return (
         <section className="flex flex-col gap-8 w-full">
@@ -16,7 +26,7 @@ const ArticleList = async () => {
                 </p>
             </div>
             <div className="grid gap-6 sm:grid-cols-1">
-                {articles.map((article) => (
+                {/*state.articles.map((article) => (
                     <Article
                         key={article.id}
                         id={article.id}
@@ -25,7 +35,7 @@ const ArticleList = async () => {
                         date={article.date}
                         author={article.author}
                     />
-                ))}
+                ))*/}
             </div>
         </section>
     );

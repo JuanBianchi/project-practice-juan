@@ -3,7 +3,7 @@ import Footer from "./components/Footer";
 import Aside from "./components/Aside";
 import Link from "next/link";
 
-export default function Home() {
+const Home = () => {
   return (
     <>
       <div className="flex min-h-screen bg-zinc-50 font-sans dark:bg-black">
@@ -24,3 +24,5 @@ export default function Home() {
     </>
   );
 }
+
+export default Home;

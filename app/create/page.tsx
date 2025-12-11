@@ -2,7 +2,7 @@ import React from 'react';
 import ArticleForm from '../components/ArticleForm';
 import Link from 'next/link';
 
-export default function CreateArticlePage() {
+const CreateArticlePage = () => {
     return (
         <div className="flex min-h-screen bg-zinc-50 font-sans dark:bg-black">
             <main className="flex min-h-screen w-full max-w-3xl flex-col items-start justify-start py-12 px-6 bg-white dark:bg-black mx-auto sm:px-12">
@@ -27,3 +27,5 @@ export default function CreateArticlePage() {
         </div>
     );
 }
+
+export default CreateArticlePage;

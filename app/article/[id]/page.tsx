@@ -8,7 +8,7 @@ interface PageProps {
     }>;
 }
 
-export default async function ArticlePage({ params }: PageProps) {
+const ArticlePage = async function ({ params }: PageProps) {
     const { id } = await params;
     const articleId = parseInt(id, 10);
     const article = await getArticleById(articleId);
@@ -40,3 +40,5 @@ export default async function ArticlePage({ params }: PageProps) {
         </div>
     );
 }
+
+export default ArticlePage;
