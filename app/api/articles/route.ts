@@ -29,7 +29,6 @@ async function writeArticles(articles: ArticleData[]): Promise<void> {
 
 export async function GET() {
     const articles = await readArticles();
-    console.log({ articles });
     return NextResponse.json(articles);
 }
 
@@ -46,7 +45,6 @@ export async function POST(request: NextRequest) {
         }
 
         const articles = await readArticles();
-
         const newId = articles.length > 0 ? Math.max(...articles.map(a => a.id)) + 1 : 1;
 
         const newArticle: ArticleData = {
@@ -62,6 +60,7 @@ export async function POST(request: NextRequest) {
         await writeArticles(articles);
 
         return NextResponse.json(newArticle, { status: 201 });
+
     } catch (error) {
         console.error('Error al crear el artículo:', error);
         return NextResponse.json(

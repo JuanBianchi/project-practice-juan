@@ -46,5 +46,61 @@
     "content": "Spam",
     "date": "2025-12-05",
     "author": "Ariel"
+  },
+  {
+    "id": 7,
+    "title": "Nuevo articulo",
+    "summary": "Probando nuevas funcionalidades",
+    "content": "Estoy probando el hook useActionState y la action postArticlesAction",
+    "author": "Juan",
+    "date": "2025-12-11"
+  },
+  {
+    "id": 8,
+    "title": "Otro articulo de prueba",
+    "summary": "Lo mismo que el articulo de arriba",
+    "content": "Hola",
+    "author": "Yo",
+    "date": "2025-12-11"
+  },
+  {
+    "id": 9,
+    "title": "Titulo",
+    "summary": "Resumen",
+    "content": "Contenido",
+    "author": "Autor",
+    "date": "2025-12-11"
+  },
+  {
+    "id": 10,
+    "title": "Hola",
+    "summary": "Soy",
+    "content": "un",
+    "author": "Articulo",
+    "date": "2025-12-11"
+  },
+  {
+    "id": 11,
+    "title": "NO ENTRES A ESTE ARTICULO",
+    "summary": "TE VAS A ARREPENTIR",
+    "content": "puto el que lee",
+    "author": "Juan",
+    "date": "2025-12-11"
+  },
+  {
+    "id": 12,
+    "title": "Prueba",
+    "summary": "Este es un articulo de prueba",
+    "content": "Estoy probando el useActionState",
+    "author": "Juan",
+    "date": "2025-12-11"
+  },
+  {
+    "id": 13,
+    "title": "asada",
+    "summary": "asdasd",
+    "content": "asdasd",
+    "author": "Juan",
+    "date": "2025-12-11"
   }
 ]

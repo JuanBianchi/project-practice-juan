@@ -1,19 +1,11 @@
 "use client";
 
-import React, { useEffect } from "react";
-import Article from "./Article";
+import React from "react";
+import Article, { ArticleProps } from "./Article";
 import useArticles from "../hooks/useArticles";
-import { useActionState } from "react";
-
 
 const ArticleList = () => {
-    //const articles = await useArticles();
-    //const [articles, setArticles, isPending] = useActionState(useArticles, null);
-    const [state, formAction] = useActionState(useArticles, []);
-
-    useEffect(() => {
-        formAction();
-    }, []);
+    const { articles, loading } = useArticles();
 
     return (
         <section className="flex flex-col gap-8 w-full">
@@ -25,17 +17,11 @@ const ArticleList = () => {
                     Desarrollo de software, diseño y más.
                 </p>
             </div>
+            {loading && <p className="text-zinc-500">Cargando artículos...</p>}
             <div className="grid gap-6 sm:grid-cols-1">
-                {/*state.articles.map((article) => (
-                    <Article
-                        key={article.id}
-                        id={article.id}
-                        title={article.title}
-                        summary={article.summary}
-                        date={article.date}
-                        author={article.author}
-                    />
-                ))*/}
+                {!loading && articles.map((article: ArticleProps) => (
+                    <Article key={article.id} {...article} />
+                ))}
             </div>
         </section>
     );

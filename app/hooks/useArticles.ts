@@ -12,9 +12,7 @@ const useArticles = () => {
                 const response = await fetch('/api/articles');
                 console.log({ response });
                 if (!response.ok) {
-
-                    //throw new Error('Error al cargar los artículos');
-
+                    return error;
                 }
                 const data = await response.json();
                 setArticles(data);
@@ -24,9 +22,9 @@ const useArticles = () => {
                 setLoading(false);
             }
         };
+
         fetchArticles();
     }, []);
-
     return { articles, loading, error };
 };
 
