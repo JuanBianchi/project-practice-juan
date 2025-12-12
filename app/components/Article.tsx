@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 
-interface ArticleProps {
+export interface ArticleProps {
     id: number;
     title: string;
     summary: string;
