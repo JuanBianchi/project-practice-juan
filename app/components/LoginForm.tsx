@@ -6,7 +6,7 @@ import { useState } from "react";
 const LoginForm = () => {
     const [isLoading, setIsLoading] = useState(false);
 
-    async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
+    const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         setIsLoading(true);
 

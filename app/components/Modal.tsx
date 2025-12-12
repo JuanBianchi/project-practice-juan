@@ -1,50 +1,50 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { MouseEventHandler, useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 
-export default function Modal({ children }: { children: React.ReactNode }) {
-    const overlay = useRef(null);
-    const wrapper = useRef(null);
+interface ModalProps {
+    children: React.ReactNode;
+}
+
+const Modal = ({ children }: ModalProps) => {
+    const overlayRef = useRef<HTMLDivElement>(null);
+    const wrapperRef = useRef<HTMLDivElement>(null);
     const router = useRouter();
 
     const onDismiss = useCallback(() => {
         router.back();
     }, [router]);
 
-    const onClick: MouseEventHandler = useCallback(
-        (e) => {
-            if (e.target === overlay.current || e.target === wrapper.current) {
-                if (onDismiss) onDismiss();
-            }
-        },
-        [onDismiss, overlay, wrapper]
-    );
-
-    const onKeyDown = useCallback(
-        (e: KeyboardEvent) => {
-            if (e.key === "Escape") onDismiss();
-        },
-        [onDismiss]
-    );
+    const onOverlayClick = useCallback((e: React.MouseEvent) => {
+        if (e.target === overlayRef.current) {
+            onDismiss();
+        }
+    }, [onDismiss]);
 
     useEffect(() => {
-        document.addEventListener("keydown", onKeyDown);
-        return () => document.removeEventListener("keydown", onKeyDown);
-    }, [onKeyDown]);
+        const handleKey = (e: KeyboardEvent) => {
+            if (e.key === "Escape") onDismiss();
+        };
+
+        document.addEventListener("keydown", handleKey);
+        return () => document.removeEventListener("keydown", handleKey);
+    }, [onDismiss]);
 
     return (
         <div
-            ref={overlay}
+            ref={overlayRef}
             className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-6 backdrop-blur-sm animate-in fade-in duration-200"
-            onClick={onClick}
+            onClick={onOverlayClick}
         >
             <div
-                ref={wrapper}
+                ref={wrapperRef}
                 className="w-full max-w-md overflow-hidden rounded-2xl bg-white dark:bg-zinc-900 shadow-2xl ring-1 ring-zinc-900/5 dark:ring-white/10 animate-in zoom-in-95 duration-200"
             >
                 {children}
             </div>
         </div>
     );
-}
+};
+
+export default Modal;

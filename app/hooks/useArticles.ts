@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
+import getArticles from '../services/articleService';
 
 const useArticles = () => {
     const [articles, setArticles] = useState([]);
@@ -9,12 +10,7 @@ const useArticles = () => {
     useEffect(() => {
         const fetchArticles = async () => {
             try {
-                const response = await fetch('/api/articles');
-                console.log({ response });
-                if (!response.ok) {
-                    return error;
-                }
-                const data = await response.json();
+                const data = await getArticles();
                 setArticles(data);
             } catch (e: any) {
                 setError(e.message);

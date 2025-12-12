@@ -1,10 +1,10 @@
 "use client";
 
-import React from "react";
 import { useActionState, useEffect } from "react";
 import { createArticleAction } from "../action/postArticlesAction";
-import { JSX } from "react";
+import type { JSX } from "react";
 import { useRouter } from "next/navigation";
+import Form from 'next/form'
 
 const ArticleForm = (): JSX.Element => {
     const router = useRouter();
@@ -18,7 +18,7 @@ const ArticleForm = (): JSX.Element => {
     }, [state.success, router]);
 
     return (
-        <form
+        <Form
             action={action}
             className="flex flex-col gap-6 w-full max-w-2xl mx-auto p-6 bg-white dark:bg-zinc-900 rounded-xl shadow-lg border border-zinc-200 dark:border-zinc-800"
         >
@@ -95,7 +95,7 @@ const ArticleForm = (): JSX.Element => {
                     Cancelar
                 </button>
             </div>
-        </form>
+        </Form>
     );
 };
 

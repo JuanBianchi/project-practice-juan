@@ -1,23 +1,25 @@
 import { useState, useEffect } from 'react';
+import getFile from '../services/fileService';
+import { get } from 'http';
 
 const useReadFile = (filePath: string) => {
-    const [statusCode, setStatusCode] = useState(200);
+    const [statusCode, setStatusCode] = useState(500);
     const [useMessage, setUseMessage] = useState('');
     const [data, setData] = useState<any | [] | string>('');
 
     const readArticles = async () => {
-        try {
-            const res = await fetch('/api/articles');
-            if (!res.ok) {
-                throw new Error('Error al leer el archivo');
+        const fetchArticles = async () => {
+            try {
+                const data = await getFile();
+                setData(data);
+            } catch (e: any) {
+                setUseMessage(e.message);
+            } finally {
+                setStatusCode(200);
             }
-            const data = await res.json();
-            setData(data);
-        } catch (error) {
-            console.error('Error al leer el archivo:', error);
-            setStatusCode(500);
-            setUseMessage('Error al leer el archivo' + { setStatusCode });
-        }
+        };
+
+        fetchArticles();
     }
 
     useEffect(() => {
